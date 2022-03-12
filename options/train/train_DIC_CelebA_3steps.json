@@ -11,8 +11,8 @@
         "train": {
             "mode": "HRLandmark",
             "name": "CelebALandmarkTrain",
-            "dataroot_HR": "/home/jzy/datasets/SR_datasets/CelebA/img_celeba",
-            "info_path": "/home/jzy/datasets/SR_datasets/CelebA/new_train_info_list.pkl",
+            "dataroot_HR": "../data/Img_CelebA",
+            "info_path": "../data/Img_CelebA/annotations/CelebA_train.pkl",
             "data_type": "img",
             "n_workers": 8,
             "batch_size": 8,
@@ -25,8 +25,8 @@
         "val": {
             "mode": "HRLandmark",
             "name": "CelebALandmarkVal",
-            "dataroot_HR": "/home/jzy/datasets/SR_datasets/CelebA/img_celeba",
-            "info_path": "/home/jzy/datasets/SR_datasets/CelebA/new_val_info_list.pkl",
+            "dataroot_HR": "../data/Img_CelebA",
+            "info_path": "../data/Img_CelebA/annotations/CelebA_cal.pkl",
             "data_type": "img",
             "LR_size": 16,
             "HR_size": 128,
