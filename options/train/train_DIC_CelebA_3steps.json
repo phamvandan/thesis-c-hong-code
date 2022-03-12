@@ -1,7 +1,7 @@
 {
     "name": "DIC_CelebA",
     "mode": "sr_align",
-    "gpu_ids": [0, 1],
+    "gpu_ids": [0],
     "use_tb_logger": true,
     "scale": 8,
     "is_train": true,
@@ -47,7 +47,7 @@
     },
     "solver": {
         "type": "ADAM",
-        "patience": 10,
+        "patience": 15,
         "validate_steps": [0.33, 0.67, 1],
         "batch_accumulate": 16,
         "learning_rate": 1e-4,
