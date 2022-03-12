@@ -111,6 +111,7 @@ class HRLandmarkDataset(data.Dataset):
         hr_path = self.paths_HR[idx]
         if "DIC_CelebA" in self.opt["name"]:
             hr_path = hr_path.replace("png", "jpg")
+        print("PATTTTTHHH", hr_path)
         hr = util_dataset.read_img(hr_path, self.opt['data_type'])
 
         return hr, hr_path
