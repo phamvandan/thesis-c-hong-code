@@ -110,8 +110,6 @@ class HRLandmarkDataset(data.Dataset):
 
     def _load_file(self, idx):
         hr_path = self.paths_HR[idx]
-        if "DIC_CelebA" in self.opt["name"]:
-            hr_path = hr_path.replace("png", "jpg")
         if not os.path.exists(hr_path):
             print("Path not exist", hr_path)
         hr = util_dataset.read_img(hr_path, self.opt['data_type'])
