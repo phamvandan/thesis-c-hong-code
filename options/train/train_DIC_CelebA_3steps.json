@@ -15,7 +15,7 @@
             "info_path": "../data/annotations/CelebA_train_.pkl",
             "data_type": "img",
             "n_workers": 4,
-            "batch_size": 16,
+            "batch_size": 8,
             "LR_size": 16,
             "HR_size": 128,
             "use_flip": false,
