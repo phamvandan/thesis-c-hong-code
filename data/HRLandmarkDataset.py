@@ -5,6 +5,7 @@ from torchvision import transforms
 import numpy as np
 from data import util_dataset
 from PIL import Image
+import os
 
 class HRLandmarkDataset(data.Dataset):
     '''
@@ -111,7 +112,8 @@ class HRLandmarkDataset(data.Dataset):
         hr_path = self.paths_HR[idx]
         if "DIC_CelebA" in self.opt["name"]:
             hr_path = hr_path.replace("png", "jpg")
-        print("PATTTTTHHH", hr_path)
+        if not os.path.exists(hr_path):
+            print("Path not exist", hr_path)
         hr = util_dataset.read_img(hr_path, self.opt['data_type'])
 
         return hr, hr_path
