@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 import cv2
 import matplotlib.pyplot as plt
+import shutil
 
 ####################
 # miscellaneous
@@ -28,6 +29,9 @@ def mkdirs(paths):
 
 
 def mkdir_and_rename(path):
+    if os.path.exists(path):
+        shutil.rmtree(path)
+        print("Deleted old experiment with name", path)
     if os.path.exists(path):
         new_name = path + '_archived_' + get_timestamp()
         print('Path already exists. Rename it to [{:s}]'.format(new_name))
