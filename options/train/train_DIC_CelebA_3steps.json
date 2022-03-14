@@ -11,7 +11,7 @@
         "train": {
             "mode": "HRLandmark",
             "name": "CelebALandmarkTrain",
-            "dataroot_HR": "../data/Img_CelebA",
+            "dataroot_HR": "../data/Img_celebA",
             "info_path": "../data/annotations/CelebA_train_.pkl",
             "data_type": "img",
             "n_workers": 8,
