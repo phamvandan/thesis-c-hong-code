@@ -15,8 +15,11 @@ def main():
         description='Test Super Resolution Models')
     parser.add_argument(
         '-opt', type=str, required=True, help='Path to options JSON file.')
+    parser.add_argument(
+        '-weights', type=str, required=True, help='Name of weights.')
     opt = option.parse(parser.parse_args().opt)
     opt = option.dict_to_nonedict(opt)
+    opt["solver"]["pretrained_path"] = parser.parse_args().weights
 
     # initial configure
     scale = opt['scale']
