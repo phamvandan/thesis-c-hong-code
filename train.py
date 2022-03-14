@@ -55,7 +55,7 @@ def main():
             train_set, val_set = random_split(train_set, [int(0.9*len(train_set)), len(train_set) - int(0.9*len(train_set))])
             train_loader = create_dataloader(train_set, dataset_opt)
             total_iters = int(opt['solver']['niter'])
-            num_epoch = int(math.ceil(1.0 * total_iters / len(train_loader)))
+            num_epoch = int(opt['solver']['epochs'])
 
             print('===> Train Dataset: %s   Number of images: [%d]' %
                   (dataset_opt['name'], len(train_set)))
