@@ -418,6 +418,7 @@ class SRLandmarkSolver(BaseSolver):
         return self.optimizer.param_groups[0]['lr']
 
     def update_learning_rate(self):
+        return
         self.scheduler.step(self.step)
         if self.train_opt['release_HG_grad_step'] != None and self.step >= self.train_opt['release_HG_grad_step']:
             if self.hg_require_grad is not True:
