@@ -439,7 +439,7 @@ class SRLandmarkSolver(BaseSolver):
         return log
 
     def set_current_log(self, log):
-        self.step = log['step']
+        # self.step = log['step']
         self.cur_epoch = log['epoch']
         self.best_pred = log['best_pred']
         self.best_step = log['best_step']

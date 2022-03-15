@@ -117,7 +117,7 @@ def main():
                 val_loss_dict[k[4:]] = []
 
         for index, batch in enumerate(train_loader):
-            solver.step += 1
+            solver.step = index
             if solver.step > total_iters:
                 break
             solver.feed_data(batch)
