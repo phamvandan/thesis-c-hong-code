@@ -17,7 +17,10 @@ def main():
         '-opt', type=str, required=True, help='Path to options JSON file.')
     parser.add_argument(
         '-weights', type=str, required=True, help='Name of weights.')
-    opt = option.parse(parser.parse_args().opt)
+    parser.add_argument(
+        '-save_folder', type=str, required=True, help='Name of experiments.')
+    save_folder = parser.parse_args().save_folder
+    opt = option.parse(parser.parse_args().opt, save_folder)
     opt = option.dict_to_nonedict(opt)
     opt["solver"]["pretrained_path"] = parser.parse_args().weights
 

@@ -38,7 +38,7 @@
         "num_features": 48,
         "in_channels": 3,
         "out_channels": 3,
-        "num_steps": 3,
+        "num_steps": 4,
         "num_groups": 6,
         "detach_attention": false,
         "hg_num_feature": 256,
