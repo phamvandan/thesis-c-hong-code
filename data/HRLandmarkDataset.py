@@ -45,30 +45,33 @@ class HRLandmarkDataset(data.Dataset):
     
     def get_new_landmarks(self, landmarks):
         new_landmarks = []
-        for index in [7,9,11,18,20,22,23,25,27,31,32,34,36]:
-            new_landmarks.append(landmarks[index-1])
+        for index, lm in enumerate(landmarks):
+            if index+1 not in [29,30,33,35,19,21,24,26,50,54,60,57,2,16,4,14,6,12,8,10]:
+                new_landmarks.append(lm)
+        # for index in [7,9,11,18,20,22,23,25,27,31,32,34,36]:
+        #     new_landmarks.append(landmarks[index-1])
 
-        points = []
-        for index in [37,38,39,40,41,42]:
-            points.append(landmarks[index-1])
-        new_lm = np.mean(np.array(points), axis=0)
-        new_landmarks.append((new_lm[0], new_lm[1]))
+        # points = []
+        # for index in [37,38,39,40,41,42]:
+        #     points.append(landmarks[index-1])
+        # new_lm = np.mean(np.array(points), axis=0)
+        # new_landmarks.append((new_lm[0], new_lm[1]))
 
-        points = []
-        for index in [43,44,45,46,47,48]:
-            points.append(landmarks[index-1])
-        new_lm = np.mean(np.array(points), axis=0)
-        new_landmarks.append((new_lm[0], new_lm[1]))
+        # points = []
+        # for index in [43,44,45,46,47,48]:
+        #     points.append(landmarks[index-1])
+        # new_lm = np.mean(np.array(points), axis=0)
+        # new_landmarks.append((new_lm[0], new_lm[1]))
 
-        for index in [49,52,55,58]:
-            new_landmarks.append(landmarks[index-1])
+        # for index in [49,52,55,58]:
+        #     new_landmarks.append(landmarks[index-1])
         return new_landmarks
 
     def __getitem__(self, idx):
         hr, hr_path = self._load_file(idx) # Numpy float32, HWC, RGB, [0,255]
         landmark = self.landmarks[idx]
         ## WE use smaller landmark here
-        if self.numkps == 19:
+        if self.numkps != 68:
             landmark = self.get_new_landmarks(landmark)
         
         bbox = self.bboxes[idx]

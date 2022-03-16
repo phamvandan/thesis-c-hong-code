@@ -209,14 +209,16 @@ class SRLandmarkSolver(BaseSolver):
         model_state_dict = self.model.module.state_dict() if isinstance(
             self.model, nn.DataParallel) else self.model.state_dict()
         if is_best:
-            filename = os.path.join(self.checkpoint_dir, 'best_ckp.pth')
-            print('===> Saving best checkpoint (step %d) to [%s] ...]' % (
-                self.step, filename))
+            ckp_filename = os.path.join(self.checkpoint_dir, 'best_ckp.pth')
+            w_filename = os.path.join(self.checkpoint_dir, 'best_weights.pth')
+            print('===> Saving best checkpoint and best weights at (step %d) to [%s] ...]' % (
+                self.step, ckp_filename))
+            torch.save(model_state_dict, w_filename, _use_new_zipfile_serialization=False)
         else:
-            filename = os.path.join(
+            ckp_filename = os.path.join(
                 self.checkpoint_dir, 'step_%07d_ckp.pth' % self.step)
-            print('===> Saving last checkpoint to [%s] ...]' % filename)
-        torch.save(model_state_dict, filename, _use_new_zipfile_serialization=False)
+            print('===> Saving last checkpoint to [%s] ...]' % ckp_filename)
+        torch.save(ckp, ckp_filename, _use_new_zipfile_serialization=False)
 
     def load_model_flex_kv(self, old_model_dict, new_model):
         new_state_dict = new_model.state_dict()

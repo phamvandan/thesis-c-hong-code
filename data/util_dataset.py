@@ -149,8 +149,7 @@ def _hflip_heatmap_channels(heatmap):
     heatmap: B*W*H
     '''
     num_keypoints = heatmap.shape[0]
-    if num_keypoints == 19:
-        def reverse_round(all_indices):
+    def reverse_round(all_indices):
             assert all_indices.shape[0] % 2 == 0
             mid_index = int((all_indices[-1] - all_indices[0] + 1) / 2)
             return_indices = np.zeros_like(all_indices)
@@ -158,7 +157,7 @@ def _hflip_heatmap_channels(heatmap):
             return_indices[:mid_index+1] = all_indices[:mid_index+1][::-1]
             return_indices[mid_index+1:] = all_indices[mid_index+1:][::-1]
             return return_indices
-        
+    if num_keypoints == 19:
         index = np.arange(start=0, stop=19, dtype=int)
         # # face outline
         # index[:17] = index[:17][::-1]
@@ -186,15 +185,6 @@ def _hflip_heatmap_channels(heatmap):
         # nose
         index[10: 13] = index[10: 13][::-1]
     elif num_keypoints == 68:
-        def reverse_round(all_indices):
-            assert all_indices.shape[0] % 2 == 0
-            mid_index = int((all_indices[-1] - all_indices[0] + 1) / 2)
-            return_indices = np.zeros_like(all_indices)
-            # upper part
-            return_indices[:mid_index+1] = all_indices[:mid_index+1][::-1]
-            return_indices[mid_index+1:] = all_indices[mid_index+1:][::-1]
-            return return_indices
-        
         index = np.arange(start=0, stop=68, dtype=int)
         # face outline
         index[:17] = index[:17][::-1]
@@ -208,7 +198,20 @@ def _hflip_heatmap_channels(heatmap):
         index[17: 27] = index[17: 27][::-1]
         # nose
         index[31: 36] = index[31: 36][::-1]
-
+    elif num_keypoints == 48:
+        index = np.arange(start=0, stop=48, dtype=int)
+        # face outline
+        index[:9] = index[:9][::-1]
+        # mouth
+        index[32: 40] = reverse_round(index[32: 40])
+        index[40: 48] = reverse_round(index[40: 48])
+        # eyes
+        index[20: 26] = reverse_round(index[20: 26])
+        index[26: 32] = reverse_round(index[26: 32])
+        # eyebrow
+        index[9: 15] = index[9:15][::-1]
+        # nose
+        index[15: 20] = index[15: 20][::-1]
     else:
         raise NotImplementedError('Horizontal flip for heatmap is not implemented for %d points' % num_keypoints)
         

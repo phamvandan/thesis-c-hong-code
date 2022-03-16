@@ -32,6 +32,14 @@ def merge_heatmap_5(heatmap_in, detach):
         new_heatmap[:, 3] = heatmap[:, 48:68].sum(1) # mouse
         new_heatmap[:, 4] = heatmap[:, :27].sum(1) # face silhouette
         return new_heatmap.detach() if detach else new_heatmap
+    elif heatmap.size(1) == 48:
+        new_heatmap = torch.zeros_like(heatmap[:, :5])
+        new_heatmap[:, 0] = heatmap[:, 20:26].sum(1) # left eye
+        new_heatmap[:, 1] = heatmap[:, 26:32].sum(1) # right eye
+        new_heatmap[:, 2] = heatmap[:, 15:20].sum(1) # nose
+        new_heatmap[:, 3] = heatmap[:, 32:48].sum(1) # mouse
+        new_heatmap[:, 4] = heatmap[:, :9].sum(1) # face silhouette
+        return new_heatmap.detach() if detach else new_heatmap
     elif heatmap.size(1) == 194: # Helen
         new_heatmap = torch.zeros_like(heatmap[:, :5])
         tmp_id = torch.cat((torch.arange(134, 153), torch.arange(174, 193)))
