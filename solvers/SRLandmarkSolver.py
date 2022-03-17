@@ -15,7 +15,7 @@ from networks import create_model
 from .base_solver import BaseSolver
 from networks import init_weights
 from utils import util
-from solvers.utils_losses import FocalLoss, Spatial_Loss
+from solvers.utils_losses import FocalLoss, Spatial_Loss, MS_SSIM_L1_LOSS
 
 
 class SRLandmarkSolver(BaseSolver):
@@ -58,6 +58,8 @@ class SRLandmarkSolver(BaseSolver):
                     self.loss_dict[k]['criterion'] = FocalLoss()
                 elif loss_type == 'texture':
                     self.loss_dict[k]['criterion'] = Spatial_Loss()
+                elif loss_type == 'ms_l1':
+                    self.loss_dict[k]['criterion'] = MS_SSIM_L1_LOSS()
                 else:
                     raise NotImplementedError(
                         '%d loss type [%s] is not implemented!' % (k,
