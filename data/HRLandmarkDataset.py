@@ -71,8 +71,8 @@ class HRLandmarkDataset(data.Dataset):
         hr, hr_path = self._load_file(idx) # Numpy float32, HWC, RGB, [0,255]
         landmark = self.landmarks[idx]
         ## WE use smaller landmark here
-        if self.numkps != 68:
-            landmark = self.get_new_landmarks(landmark)
+        # if self.numkps != 68:
+        #     landmark = self.get_new_landmarks(landmark)
         
         bbox = self.bboxes[idx]
         distort_ratio = np.random.rand() * self.distort[0] + self.distort[1]
