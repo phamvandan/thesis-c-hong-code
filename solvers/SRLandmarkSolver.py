@@ -215,12 +215,13 @@ class SRLandmarkSolver(BaseSolver):
             w_filename = os.path.join(self.checkpoint_dir, 'best_weights.pth')
             print('===> Saving best checkpoint and best weights at (step %d) to [%s] ...]' % (
                 self.step, ckp_filename))
-            torch.save(model_state_dict, w_filename, _use_new_zipfile_serialization=False)
+            # torch.save(model_state_dict, w_filename, _use_new_zipfile_serialization=False)
         else:
             ckp_filename = os.path.join(
                 self.checkpoint_dir, 'step_%07d_ckp.pth' % self.step)
             print('===> Saving last checkpoint to [%s] ...]' % ckp_filename)
-        torch.save(ckp, ckp_filename, _use_new_zipfile_serialization=False)
+        torch.save(model_state_dict, w_filename, _use_new_zipfile_serialization=False)
+        # torch.save(ckp, ckp_filename, _use_new_zipfile_serialization=False)
 
     def load_model_flex_kv(self, old_model_dict, new_model):
         new_state_dict = new_model.state_dict()

@@ -190,7 +190,7 @@ def main():
                     solver.save_checkpoint(epoch, True)
                     count_patience = 0
                 else:
-                    solver.save_checkpoint(epoch, False)
+                    # solver.save_checkpoint(epoch, False)
                     count_patience += 1
                     if count_patience == patience:
                         print("EARLY STOPPING: Got best PSNR =",
