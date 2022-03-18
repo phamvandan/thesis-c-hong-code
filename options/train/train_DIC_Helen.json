@@ -50,7 +50,7 @@
     "solver": {
         "type": "ADAM",
         "epochs": 30,
-        "patience": 10,
+        "patience": 15,
         "validate_steps": [0.33, 0.67, 1],
         "batch_accumulate": 8,
         "learning_rate": 0.5e-4,
