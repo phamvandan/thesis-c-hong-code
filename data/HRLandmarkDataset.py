@@ -12,7 +12,7 @@ class HRLandmarkDataset(data.Dataset):
     Read HR images and landmark data in train and eval phases.
     '''
 
-    def __init__(self, opt, numkps = 48):
+    def __init__(self, opt, numkps = 68):
         super(HRLandmarkDataset, self).__init__()
         self.numkps = numkps
         self.opt = opt
