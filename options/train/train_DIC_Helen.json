@@ -49,7 +49,7 @@
     },
     "solver": {
         "type": "ADAM",
-        "epochs": 10,
+        "epochs": 30,
         "patience": 10,
         "validate_steps": [0.33, 0.67, 1],
         "batch_accumulate": 8,
